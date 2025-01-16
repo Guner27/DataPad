@@ -1,15 +1,17 @@
 import React from 'react';
-import { Button, SafeAreaView, Text } from 'react-native';
+import { Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import PageView from '../components/PageView';
+import MText from '../components/MText';
 export default function LoginScreen(){
     const navigation = useNavigation<any>();
     return(
-        // eslint-disable-next-line react-native/no-inline-styles
-        <SafeAreaView  style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text> Login Sayfası</Text>
+        <PageView>
+            <MText> Login Sayfası</MText>
+            <Icon name="home" size={42} color="black"/>
             <Button title="Ürünler" onPress={() => navigation.navigate('tab',{ screen: 'category' })} />
-        </SafeAreaView>
+        </PageView>
     );
 }
+

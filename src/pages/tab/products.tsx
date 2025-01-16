@@ -1,14 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Button, SafeAreaView, Text } from 'react-native';
+import { Button } from 'react-native';
+import PageView from '../../components/PageView';
+import MText from '../../components/MText';
 
 export default function ProductsScreen(){
     const navigation = useNavigation<any>();
     return(
-        // eslint-disable-next-line react-native/no-inline-styles
-        <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text> Ürünler Sayfası</Text>
+        <PageView>
+            <MText> Ürünler Sayfası</MText>
             <Button title="Ürünler" onPress={() => navigation.navigate('login')} />
-        </SafeAreaView>
+        </PageView>
     );
 }

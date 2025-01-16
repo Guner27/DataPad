@@ -1,5 +1,5 @@
-import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
+import {DarkTheme, DefaultTheme, NavigationContainer, ThemeProvider} from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginScreen from './pages/login';
@@ -8,22 +8,74 @@ import CategoryScreen from './pages/tab/category';
 import ProductsScreen from './pages/tab/products';
 import UserEditScreen from './pages/userEdit';
 import ProductAddScreen from './pages/productAdd';
+import { Dimensions, Platform, useColorScheme } from 'react-native';
+import { Colors } from './constants/Colors';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MainTabs() {
+  const colorScheme = useColorScheme();
+
+
+  const [isPortrait, setIsPortrait] = useState(true);
+  const eventListener = useRef<any>(null); // useRef ile dinleyiciyi sakla
+
+  const updateLayout = () => {
+    const { width, height } = Dimensions.get('window');
+    setIsPortrait(height > width);
+  };
+  useEffect(() => {
+
+    eventListener.current = Dimensions.addEventListener('change', updateLayout);
+    updateLayout(); // İlk kontrol
+
+    return () => {
+      if (eventListener) {
+        eventListener.current.remove(); // Dinleyiciyi kaldır
+      }
+    };
+  }, []);
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="home" component={HomeScreen} />
-      <Tab.Screen name="category" component={CategoryScreen} />
-      <Tab.Screen name="products" component={ProductsScreen} />
+    <Tab.Navigator screenOptions={{
+      tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      headerShown: false,
+      animation:'none',
+      tabBarStyle: Platform.select({
+        ios: {
+          // Use a transparent background on iOS to show the blur effect
+          position: 'absolute',
+        },
+        default: {
+          backgroundColor:Colors[colorScheme ?? 'dark'].tabBarBackground,
+          borderTopWidth: 0, // Üst çizgiyi kaldırıyoruz
+
+        },
+      }),
+      tabBarPosition:isPortrait ? 'bottom' : 'left',
+      tabBarVariant: isPortrait ? 'uikit' : 'material',
+      tabBarLabelPosition: isPortrait ? undefined : 'below-icon',
+    }}>
+      <Tab.Screen name="home" component={HomeScreen} options={{
+          title: '',
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: ({ color }) => <Icon name="home" size={28} color={color}/> }}/>
+      <Tab.Screen name="category" component={CategoryScreen} options={{
+          title: '',
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: ({ color }) => <Icon name="server" size={26} color={color}/> }}/>
+      <Tab.Screen name="products" component={ProductsScreen} options={{
+          title: '',
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: ({ color }) => <Icon name="shopping-bag" size={26} color={color}/> }}/>
     </Tab.Navigator>
   );
 }
 
 function Router(): React.JSX.Element {
-
+  const colorScheme = useColorScheme();
   return (
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="login" component={LoginScreen}/>
@@ -31,9 +83,8 @@ function Router(): React.JSX.Element {
         <Stack.Screen name="userEdit" component={UserEditScreen}/>
         <Stack.Screen name="productsAdd" component={ProductAddScreen}/>
         <Tab.Screen name="products" component={ProductsScreen} />
-
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer></ThemeProvider>
   );
 }
 

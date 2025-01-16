@@ -1,11 +1,11 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { Text } from 'react-native';
+import PageView from '../components/PageView';
 
 export default function ProductAddScreen(){
     return(
-        // eslint-disable-next-line react-native/no-inline-styles
-        <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <PageView>
             <Text> Ürün Ekle/Düzenle Sayfası</Text>
-        </SafeAreaView>
+        </PageView>
     );
 }
