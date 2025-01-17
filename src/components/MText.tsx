@@ -46,10 +46,10 @@ const getStyles = (colorScheme:'light' | 'dark') => {
       color:Colors[colorScheme].text,
     },
     title: {
-      fontSize: 34,
-      fontWeight: 'bold',
+      fontSize: moderateScale(24),
+      fontWeight: '500',
       lineHeight: 32,
-      color:Colors[colorScheme].text,
+      color:Colors[colorScheme].titleText,
     },
     subtitle: {
       fontSize: 20,
