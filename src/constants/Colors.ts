@@ -1,29 +1,33 @@
-const tintColorLight = '#245501'; //Dark Moss Green
-const tintColorDark = '#AAD576';  //Pistachio
+const tintColorLight = '#245501'; // Dark Moss Green
+const tintColorDark = '#AAD576';  // Pistachio
 
 export const Colors = {
   light: {
     text: '#122108',
     background: '#FFFFFF',
-    titleText:'',
+    titleText: '#245501',
     tint: tintColorLight,
-    icon: '#687076',//
+    icon: '#3D562B',
     tabIconDefault: '#687076',
-    tabBarBackground:'#fff',
+    tabBarBackground: '#F7F7F7',
     tabIconSelected: tintColorLight,
-    itemBackground:'#EEF7FB',//
-    headerbackground:'',
+    itemBackground: '#E0EACF',
+    headerbackground: '#E0EACF',
+    headerBottomBorder: '#687076', //tabbar border
+    inputBorder:'#A8D5BA',
   },
   dark: {
     text: '#F5FAEF',
-    background: '#141D0C',
+    background: '#131810',
     tint: tintColorDark,
-    titleText:'',
-    icon: '#9BA1A6',
+    titleText: '#AAD576', // Header Title
+    icon: '#8FB871',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
-    tabBarBackground:'#141D0C',
-    itemBackground:'#011B27',
-    headerbackground:'',
+    tabBarBackground: '#131810',
+    itemBackground: '#1D2A16', // Koyu yeşilimsi, öğeler için arka plan
+    headerbackground: '#131810',
+    headerBottomBorder: '#112800', //tabbar border
+    inputBorder:'#535C57',
   },
 };

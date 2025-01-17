@@ -39,6 +39,7 @@ function MainTabs() {
   return (
     <Tab.Navigator screenOptions={{
       tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].tabIconDefault,
       headerShown: false,
       animation:'none',
       tabBarStyle: Platform.select({
@@ -48,8 +49,9 @@ function MainTabs() {
         },
         default: {
           backgroundColor:Colors[colorScheme ?? 'dark'].tabBarBackground,
-          borderTopWidth: 0, // Üst çizgiyi kaldırıyoruz
-
+          borderTopWidth: 1, // Üst çizgiyi kaldırıyoruz
+          borderRightWidth:1,
+          borderColor:Colors[colorScheme ?? 'dark'].headerBottomBorder,
         },
       }),
       tabBarPosition:isPortrait ? 'bottom' : 'left',
@@ -78,7 +80,7 @@ function Router(): React.JSX.Element {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="login" component={LoginScreen}/>
+        <Stack.Screen name="login" component={LoginScreen} options={{headerShown:false}}/>
         <Stack.Screen name="tab" component={MainTabs} options={{ headerShown: false }}/>
         <Stack.Screen name="userEdit" component={UserEditScreen}/>
         <Stack.Screen name="productsAdd" component={ProductAddScreen}/>
