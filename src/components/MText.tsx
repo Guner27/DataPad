@@ -18,7 +18,8 @@ export type MTextProps = TextProps & {
     | 'defaultSemiBold'
     | 'subtitle'
     | 'link'
-    | 'button';
+    | 'button'
+    | 'label';
 };
 
 export default function MText({
@@ -39,6 +40,7 @@ export default function MText({
         type === 'subtitle' ? styles.subtitle : undefined,
         type === 'link' ? styles.link : undefined,
         type === 'button' ? styles.button : undefined,
+        type === 'label' ? styles.label : undefined,
         style,
       ]}
       {...rest}>
@@ -79,6 +81,11 @@ const getStyles = (colorScheme: 'light' | 'dark') => {
       lineHeight: moderateScale(20),
       fontSize: moderateScale(15),
       color: '#0a7ea4',
+    },
+    label:{
+      marginLeft: 10,
+      color:Colors[colorScheme].text,
+      fontSize: moderateScale(12),
     },
   });
 };

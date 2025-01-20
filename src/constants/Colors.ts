@@ -9,31 +9,32 @@ export const Colors = {
     tint: tintColorLight,
     icon: '#3D562B',
     tabIconDefault: '#687076',
-    tabBarBackground: '#F7F7F7',
+    tabBarBackground: '#d9d9d9',
     tabIconSelected: tintColorLight,
     itemBackground: '#E0EACF',
-    headerbackground: '#E0EACF',
-    headerBottomBorder: '#687076', //tabbar border
-    inputBorder:'#A8D5BA',
+    headerbackground: '#d9d9d9',
+    headerBottomBorder: '#d9d9d9', //tabbar border
+    inputBorder:'#d9d9d9',
     tabBorder:'#F7F7F7',
   },
   dark: {
     text: '#F5FAEF',
-    background: '#131810',
+    background: '#333533',
     tint: tintColorDark,
-    titleText: '#C5E2A2', // Header Title
-    icon: '#8FB871',
+    titleText: '#AAD576', // Header Title
+    icon: '#AAD576',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
-    tabBarBackground: '#131810',
+    tabBarBackground: '#333533',
     itemBackground: '#1D2A16', // Koyu yeşilimsi, öğeler için arka plan
-    headerbackground: '#1C1D1C',
-    headerBottomBorder: '#112800', //tabbar border
-    inputBorder:'#535C57',
+    headerbackground: '#6d6d6d',
+    headerBottomBorder: '#333533', //tabbar border
+    inputBorder:'#d9d9d9',
     tabBorder:'#112800',
   },
   common:{
     editIcon:'#FCCA46',
     removeIcon:'#d62828',
+    inputBackground: '#F5FAEF',
   },
 };

@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 2,
     borderBottomWidth: 1,
-    borderColor: '#193D19',
+    borderColor: '#6D6D6D',
   },
   infoEdit: {
     paddingBottom: 5,
