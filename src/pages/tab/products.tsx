@@ -9,7 +9,7 @@ export default function ProductsScreen() {
   const navigation = useNavigation<any>();
   return (
     <>
-      <TabHeader title="Ürünler" buttonName="pluscircleo" />
+      <TabHeader title="Ürünler" />
       <PageView>
         <MText> Ürünler Sayfası</MText>
         <Button title="Ürünler" onPress={() => navigation.navigate('login')} />

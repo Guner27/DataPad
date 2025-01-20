@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 interface TabHeaderProps {
   children?: React.ReactNode;
   title: string;
-  buttonName: string;
+  buttonName?: string;
   buttonColor?: string;
   buttonOnPress?: ((event: GestureResponderEvent) => void) | undefined;
 }
@@ -22,7 +22,7 @@ export default function TabHeader({
   children,
   title,
   buttonOnPress,
-  buttonName,
+  buttonName = 'pluscircleo',
   buttonColor,
 }: TabHeaderProps) {
   const colorScheme = useColorScheme();
@@ -43,7 +43,7 @@ export default function TabHeader({
       <TouchableOpacity onPress={buttonOnPress}>
         <Icon
           style={styles.butonIcon}
-          name={buttonName}
+          name={buttonName!}
           color={buttonColor}
           size={32}
         />

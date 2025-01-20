@@ -32,4 +32,8 @@ export const Colors = {
     inputBorder:'#535C57',
     tabBorder:'#112800',
   },
+  common:{
+    editIcon:'#FCCA46',
+    removeIcon:'#d62828',
+  },
 };

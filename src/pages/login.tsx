@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ActivityIndicator,
+  StatusBar,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -25,6 +26,11 @@ export default function LoginScreen() {
   loading ? <ActivityIndicator size="large" /> : null;
   return (
     <PageView style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={Colors[colorScheme || 'light'].background}
+      />
+
       <Icon style={styles.icon} name="login" size={100} />
       <TextInput
         style={styles.input}
@@ -43,7 +49,7 @@ export default function LoginScreen() {
         secureTextEntry
       />
 
-      <LoginButton title="Giriş Yap" onPress={handleLogin}/>
+      <LoginButton title="Giriş Yap" onPress={handleLogin} />
       <TouchableOpacity
         /*onPress={()=>{router.push('/forgot-password')}}*/ onPress={() =>
           navigation.navigate('tab', {screen: 'category'})
@@ -81,7 +87,7 @@ const getStyle = (colorScheme: 'light' | 'dark') => {
     passwprdText: {
       padding: 24,
       textAlign: 'center',
-      marginBottom:80,
+      marginBottom: 80,
       //color: colorScheme === "dark" ? "#8ECAE6" : "#023047",
     },
   });
