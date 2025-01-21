@@ -8,9 +8,10 @@ import CategoryScreen from './pages/tab/category';
 import ProductsScreen from './pages/tab/products';
 import UserEditScreen from './pages/userEdit';
 import ProductAddScreen from './pages/productAdd';
-import { Dimensions, Platform, useColorScheme } from 'react-native';
+import { ActivityIndicator, Dimensions, Platform, useColorScheme } from 'react-native';
 import { Colors } from './constants/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useSelector } from 'react-redux';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -76,16 +77,27 @@ function MainTabs() {
 
 function Router(): React.JSX.Element {
   const colorScheme = useColorScheme();
+  const userSession = useSelector<any>(s => s.token);
+  const isAuthLoading = useSelector<any>(s => s.isALoading);
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
     <NavigationContainer>
-      <Stack.Navigator>
+
+        {isAuthLoading ?
+        <ActivityIndicator  size={'large'}/> :
+        !userSession ?
+        <Stack.Navigator>
         <Stack.Screen name="login" component={LoginScreen} options={{headerShown:false}}/>
+        </Stack.Navigator>
+        : <>
+        <Stack.Navigator>
         <Stack.Screen name="tab" component={MainTabs} options={{ headerShown: false }}/>
         <Stack.Screen name="userEdit" component={UserEditScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="productsAdd" component={ProductAddScreen}/>
         <Tab.Screen name="products" component={ProductsScreen} />
-      </Stack.Navigator>
+        </Stack.Navigator>
+        </>
+      }
     </NavigationContainer></ThemeProvider>
   );
 }

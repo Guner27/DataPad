@@ -8,7 +8,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+//import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PageView from '../components/PageView';
 import {Colors} from '../constants/Colors';
@@ -17,7 +17,7 @@ import useLogin from '../hooks/useLogin';
 import LoginButton from '../components/LoginButton';
 
 export default function LoginScreen() {
-  const navigation = useNavigation<any>();
+  //const navigation = useNavigation<any>();
   const colorScheme = useColorScheme();
   const styles = getStyle(colorScheme || 'light');
   const {email, password, setEmail, setPassword, loading, handleLogin} =
@@ -59,7 +59,8 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         /*onPress={()=>{router.push('/forgot-password')}}*/ onPress={() =>
-          navigation.navigate('tab', {screen: 'category'})
+          //navigation.navigate('tab', {screen: 'category'})
+          console.log('')
         }>
         <MText type="link" style={styles.passwprdText}>
           Şifreni mi unuttun?

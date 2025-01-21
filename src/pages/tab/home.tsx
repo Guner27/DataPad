@@ -5,7 +5,6 @@ import TabHeader from '../../components/TabHeader';
 import {default as AntDesignIcon} from 'react-native-vector-icons/AntDesign';
 import {default as MaterialIcons} from 'react-native-vector-icons/MaterialIcons';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {
   ActivityIndicator,
@@ -18,11 +17,12 @@ import {moderateScale} from 'react-native-size-matters';
 import {Colors} from '../../constants/Colors';
 import useUser from '../../hooks/useUser';
 import Collapsible from '../../components/Collapsible';
+import { useDispatch } from 'react-redux';
 
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
   const {user, loading, deleteUser} = useUser();
-
+  const dispatch = useDispatch();
   const formatBirthDate = () => {
     const birth: string = user?.birthDate ?? '';
     const date = new Date(birth);
@@ -34,8 +34,7 @@ export default function HomeScreen() {
   };
 
   function logout() {
-    AsyncStorage.removeItem('userToken');
-    navigation.replace('login');
+    dispatch({type:'REMOVE_USER'});
     console.log('Çıkış Başarılı!');
   }
 

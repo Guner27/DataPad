@@ -1,23 +1,24 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+//import {useIsFocused, useNavigation} from '@react-navigation/native';
 import axios from 'axios';
-import {useCallback, useEffect, useState} from 'react';
+import { useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import config from '../config';
+import { useDispatch } from 'react-redux';
 
 const url = `${config.API_BASE_URL}${config.endpoints.USERS_LOGIN}`;
 const useLogin = () => {
   const [email, setEmail] = useState('can4');
   const [password, setPassword] = useState('123456');
-  const navigation = useNavigation<any>();
-  const [loading, setLoading] = useState(true);
+  //const navigation = useNavigation<any>();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     if (email === '' || password === '') {
       Alert.alert('Hata', 'Lütfen tüm alanları doldurun');
       return;
     }
-
     const loginData = {
       usernameOrMail: email, // API'deki alan ismine göre
       password: password,
@@ -34,10 +35,11 @@ const useLogin = () => {
       const responseData = await response.data;
       // Eğer API başarılı bir token dönerse
       if (response) {
+        dispatch({type: 'SET_USER',  payload:{responseData}});
         // Token'ı saklamak
-        await AsyncStorage.setItem('userToken', responseData);
+        //await AsyncStorage.setItem('userToken', responseData);
         await AsyncStorage.setItem('userNameOrMail', email);
-        navigation.replace('tab', {screen: 'home'});
+        //navigation.replace('tab', {screen: 'home'});
         console.info('Giriş Başarılı!');
         setLoading(false);
       } else {
@@ -50,6 +52,7 @@ const useLogin = () => {
     }
   };
 
+  /*
   // Eğer ekran Focus'daysa (sayfa aktifse), token kontrolünü yap
   const isFocused = useIsFocused();
 
@@ -78,7 +81,7 @@ const useLogin = () => {
       checkToken(); // Token'ı kontrol et
     }
   }, [isFocused,checkToken]);
-
+*/
   return {email, setEmail, password,setPassword, loading, handleLogin, setLoading, useEffect};
 };
 export default useLogin;
