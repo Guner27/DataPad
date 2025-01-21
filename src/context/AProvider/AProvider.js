@@ -12,7 +12,6 @@ const AProvider = ({children}) =>{
 
         AsyncStorage.getItem('userToken').then(userSession =>{
             userSession && setToken(userSession);
-            console.info(userSession);
             setALoading(false);
         });
     }, []);

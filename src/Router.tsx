@@ -8,10 +8,11 @@ import CategoryScreen from './pages/tab/category';
 import ProductsScreen from './pages/tab/products';
 import UserEditScreen from './pages/userEdit';
 import ProductAddScreen from './pages/productAdd';
-import { ActivityIndicator, Dimensions, Platform, useColorScheme } from 'react-native';
+import {  Dimensions, Platform, useColorScheme } from 'react-native';
 import { Colors } from './constants/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from 'react-redux';
+import Loading from './components/Loading';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -84,7 +85,7 @@ function Router(): React.JSX.Element {
     <NavigationContainer>
 
         {isAuthLoading ?
-        <ActivityIndicator  size={'large'}/> :
+        <Loading/> :
         !userSession ?
         <Stack.Navigator>
         <Stack.Screen name="login" component={LoginScreen} options={{headerShown:false}}/>
