@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   useColorScheme,
+  View,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -32,24 +33,30 @@ export default function LoginScreen() {
       />
 
       <Icon style={styles.icon} name="login" size={100} />
-      <TextInput
-        style={styles.input}
-        placeholder="E-posta"
-        placeholderTextColor="gray"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Şifre"
-        placeholderTextColor="gray"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+      <View style={styles.inputContainer}>
+        <Icon name="person" size={24} style={styles.inputIcon} />
+        <TextInput
+          style={styles.input}
+          placeholder="E-posta"
+          placeholderTextColor="gray"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Icon name="key" size={24} style={styles.inputIcon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Şifre"
+          placeholderTextColor="gray"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+      </View>
+      {loading ? (<ActivityIndicator size="large" />) : (<LoginButton title="Giriş Yap" onPress={handleLogin}/>)}
 
-      <LoginButton title="Giriş Yap" onPress={handleLogin} />
       <TouchableOpacity
         /*onPress={()=>{router.push('/forgot-password')}}*/ onPress={() =>
           navigation.navigate('tab', {screen: 'category'})
@@ -75,6 +82,12 @@ const getStyle = (colorScheme: 'light' | 'dark') => {
       textAlign: 'center',
     },
     input: {
+      color: Colors[colorScheme].text,
+      flex: 1,
+      height: 60,
+    },
+    inputContainer: {
+      flexDirection: 'row',
       height: 60,
       borderColor: Colors[colorScheme].inputBorder,
       borderWidth: 1,
@@ -82,8 +95,13 @@ const getStyle = (colorScheme: 'light' | 'dark') => {
       paddingHorizontal: 10,
       marginHorizontal: 16,
       borderRadius: 16,
-      color: Colors[colorScheme].text,
     },
+    inputIcon: {
+      alignSelf: 'center',
+      color: Colors[colorScheme].icon,
+      width: 25,
+    },
+
     passwprdText: {
       padding: 24,
       textAlign: 'center',

@@ -23,6 +23,7 @@ const useLogin = () => {
       password: password,
     };
     try {
+      setLoading(true);
       // API'ye POST isteği gönderiyoruz
       const response = await axios.post(url, loginData, {
         method: 'POST',
@@ -38,6 +39,7 @@ const useLogin = () => {
         await AsyncStorage.setItem('userNameOrMail', email);
         navigation.replace('tab', {screen: 'home'});
         console.info('Giriş Başarılı!');
+        setLoading(false);
       } else {
         // Hata durumunda
         Alert.alert('Hata', responseData.message || 'Bir hata oluştu');
