@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     image: {
-      width: 200, // Genişlik
+      width: 250, // Genişlik
       height: 200, // Yükseklik
       resizeMode: 'contain', // Resmin sığması için uygun bir düzenleme
     },
