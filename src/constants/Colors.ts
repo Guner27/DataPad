@@ -29,7 +29,7 @@ export const Colors = {
     itemBackground: '#1D2A16', // Koyu yeşilimsi, öğeler için arka plan
     headerbackground: '#6d6d6d',
     headerBottomBorder: '#333533', //tabbar border
-    inputBorder:'#d9d9d9',
+    inputBorder:'#6d6d6d',
     tabBorder:'#112800',
   },
   common:{

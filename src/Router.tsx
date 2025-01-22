@@ -94,7 +94,7 @@ function Router(): React.JSX.Element {
         <Stack.Navigator>
         <Stack.Screen name="tab" component={MainTabs} options={{ headerShown: false }}/>
         <Stack.Screen name="userEdit" component={UserEditScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="productsAdd" component={ProductAddScreen}/>
+        <Stack.Screen name="productsAdd" component={ProductAddScreen} options={{headerShown:false}}/>
         <Tab.Screen name="products" component={ProductsScreen} />
         </Stack.Navigator>
         </>
