@@ -1,5 +1,5 @@
 const tintColorLight = '#245501'; // Dark Moss Green
-const tintColorDark = '#AAD576';  // Pistachio
+const tintColorDark = '#9CFC97';  // Pistachio
 
 export const Colors = {
   light: {
@@ -19,16 +19,16 @@ export const Colors = {
   },
   dark: {
     text: '#F5FAEF',
-    background: '#333533',
+    background: '#292929',
     tint: tintColorDark,
-    titleText: '#AAD576', // Header Title
-    icon: '#AAD576',
+    titleText: '#9CFC97', // Header Title
+    icon: '#9CFC97',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
-    tabBarBackground: '#333533',
+    tabBarBackground: '#292929',
     itemBackground: '#1D2A16', // Koyu yeşilimsi, öğeler için arka plan
     headerbackground: '#6d6d6d',
-    headerBottomBorder: '#333533', //tabbar border
+    headerBottomBorder: '#292929', //tabbar border
     inputBorder:'#6d6d6d',
     tabBorder:'#112800',
   },

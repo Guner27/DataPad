@@ -13,6 +13,7 @@ import { Colors } from './constants/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from 'react-redux';
 import Loading from './components/Loading';
+import ForgotPassword from './pages/forgotPassword';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -89,6 +90,7 @@ function Router(): React.JSX.Element {
         !userSession ?
         <Stack.Navigator>
         <Stack.Screen name="login" component={LoginScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="forgorPassword" component={ForgotPassword} options={{headerShown:false}}/>
         </Stack.Navigator>
         : <>
         <Stack.Navigator>
