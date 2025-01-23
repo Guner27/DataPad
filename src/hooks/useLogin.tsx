@@ -45,10 +45,14 @@ const useLogin = () => {
       } else {
         // Hata durumunda
         Alert.alert('Hata', responseData.message || 'Bir hata oluştu');
+
       }
-    } catch (error) {
+    } catch (e:any) {
       // Network hataları için
-      Alert.alert('Hata', 'Bağlantı hatası. Lütfen tekrar deneyin.');
+      Alert.alert('Hata', 'Bağlantı hatası. Lütfen tekrar deneyin.' + e.message);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
