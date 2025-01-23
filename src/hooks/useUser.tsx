@@ -1,9 +1,10 @@
 import config from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
+import { useDispatch } from 'react-redux';
 
 const url = `${config.API_BASE_URL}${config.endpoints.USERS}`;
 const url_edit = `${config.API_BASE_URL}${config.endpoints.USERS_UPDATE}`;
@@ -26,12 +27,12 @@ const useUser = () => {
     id: 0,
     birthDate: '',
   });
-  const navigation = useNavigation<any>();
+  const dispatch = useDispatch();
 
   const navigateToLogin = () => {
     console.log('Token expired or invalid');
-    AsyncStorage.removeItem('userToken'); //Mevcut Token'i kaldır
-    navigation.replace('login'); //Giriş Sayfasına yönlendir.
+    dispatch({type: 'REMOVE_USER'});
+    Alert.alert('HATA!', 'Lütfen tekrar giriş yapınız. Süreniz Doldu..');
   };
 
   const fetchUser = async () => {
@@ -95,7 +96,7 @@ const useUser = () => {
       Alert.alert('Başarılı', 'Silme işlemi başarıyla gerçekleşti.');
       navigateToLogin();
     } catch (error: any) {
-      console.error('Ürün silinemedi:', error.message);
+      console.error('Hesap silinemedi:', error.message);
       if (error.response && error.response.status === 401) {navigateToLogin();}
     }
   };

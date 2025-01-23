@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/AntDesign';
 import PageView from '../components/PageView';
 import {Colors} from '../constants/Colors';
 import MText from '../components/MText';
@@ -31,41 +31,50 @@ export default function LoginScreen() {
         barStyle="light-content"
         backgroundColor={Colors[colorScheme || 'light'].background}
       />
+      <View />
+      <View>
+        <Icon style={styles.icon} name="login" size={100} />
+        <View style={styles.inputContainer}>
+          <Icon name="user" size={24} style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="E-posta"
+            placeholderTextColor="gray"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Icon name="key" size={24} style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Şifre"
+            placeholderTextColor="gray"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+        </View>
+        {loading ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <LoginButton title="Giriş Yap" onPress={handleLogin} />
+        )}
 
-      <Icon style={styles.icon} name="login" size={100} />
-      <View style={styles.inputContainer}>
-        <Icon name="person" size={24} style={styles.inputIcon} />
-        <TextInput
-          style={styles.input}
-          placeholder="E-posta"
-          placeholderTextColor="gray"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('forgorPassword')}>
+          <MText type="link" style={styles.passwprdText}>
+            Şifreni mi unuttun?
+          </MText>
+        </TouchableOpacity>
       </View>
-      <View style={styles.inputContainer}>
-        <Icon name="key" size={24} style={styles.inputIcon} />
-        <TextInput
-          style={styles.input}
-          placeholder="Şifre"
-          placeholderTextColor="gray"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-      </View>
-      {loading ? (
-        <ActivityIndicator size="large" />
-      ) : (
-        <LoginButton title="Giriş Yap" onPress={handleLogin} />
-      )}
-
-      <TouchableOpacity onPress={() => navigation.navigate('forgorPassword')}>
-        <MText type="link" style={styles.passwprdText}>
-          Şifreni mi unuttun?
-        </MText>
-      </TouchableOpacity>
+      <LoginButton
+        title="Yeni Hesap Oluştur."
+        outline={false}
+        onPress={() => {
+          navigation.navigate('register');
+        }}
+      />
     </PageView>
   );
 }
@@ -73,7 +82,7 @@ export default function LoginScreen() {
 const getStyle = (colorScheme: 'light' | 'dark') => {
   return StyleSheet.create({
     container: {
-      justifyContent: 'center',
+      justifyContent: 'space-around',
     },
     icon: {
       fontSize: 90,

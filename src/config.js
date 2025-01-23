@@ -12,6 +12,7 @@ const config = {
       PRODUCTS_GET_ALL:'/Products/AllProductsByUserId',
       USER_REQUEST_PASSWORD_RESET: '/Users/RequestPasswordReset',
       USER_RESET_PASSWORD:'/Users/ResetPassword',
+      USER_REGISTER : '/Users/Register',
     },
   };
 
