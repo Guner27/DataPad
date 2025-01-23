@@ -60,6 +60,12 @@ This is one way to run your app — you can also run it directly from within And
 
 You've successfully run my React Native App. :partying_face:
 
+## To acces apk file
+
+If you check and test the app you can install the apk file.
+
+[app-release.apk](https://github.com/Guner27/DataPad/main/apk/app-release.apk)
+
 ### Now what?
 
 - If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
