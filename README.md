@@ -64,7 +64,7 @@ You've successfully run my React Native App. :partying_face:
 
 If you check and test the app you can install the apk file.
 
-[app-release.apk](https://github.com/Guner27/DataPad/main/apk/app-release.apk)
+[app-release.apk](https://github.com/Guner27/DataPad/blob/main/main/apk/app-release.apk)
 
 ### Now what?
 
