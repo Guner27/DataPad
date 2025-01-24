@@ -54,7 +54,7 @@ export default function ForgotPassword() {
         barStyle="light-content"
         backgroundColor={Colors[colorScheme || 'light'].headerbackground}
       />
-      <PageView>
+      <PageView lockToPortrait={true}>
         {pageChange ? (
           <View style={styles.container}>
             <Icon style={styles.icon} name="outgoing-mail" />

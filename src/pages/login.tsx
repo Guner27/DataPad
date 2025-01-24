@@ -26,7 +26,7 @@ export default function LoginScreen() {
   // Eğer loading durumu varsa, loading gösterebiliriz
   loading ? <ActivityIndicator size="large" /> : null;
   return (
-    <PageView style={styles.container}>
+    <PageView style={styles.container} lockToPortrait={true}>
       <StatusBar
         barStyle="light-content"
         backgroundColor={Colors[colorScheme || 'light'].background}

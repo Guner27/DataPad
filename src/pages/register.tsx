@@ -55,7 +55,7 @@ export default function RegisterScreen() {
     }
   }
   return (
-    <PageView style={styles.container}>
+    <PageView style={styles.container} lockToPortrait={true}>
       <StatusBar
         barStyle="light-content"
         backgroundColor={Colors[colorScheme || 'light'].background}
