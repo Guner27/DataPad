@@ -28,7 +28,7 @@ export default function LoginScreen() {
   return (
     <PageView style={styles.container} lockToPortrait={true}>
       <StatusBar
-        barStyle="light-content"
+        barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
         backgroundColor={Colors[colorScheme || 'light'].background}
       />
       <View />
@@ -63,7 +63,7 @@ export default function LoginScreen() {
         )}
 
         <TouchableOpacity onPress={() => navigation.navigate('forgorPassword')}>
-          <MText type="link" style={styles.passwprdText}>
+          <MText type="subtitle" style={styles.passwprdText}>
             Şifreni mi unuttun?
           </MText>
         </TouchableOpacity>
@@ -116,7 +116,6 @@ const getStyle = (colorScheme: 'light' | 'dark') => {
       padding: 24,
       textAlign: 'center',
       marginBottom: 80,
-      //color: colorScheme === "dark" ? "#8ECAE6" : "#023047",
     },
   });
 };

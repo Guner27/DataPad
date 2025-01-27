@@ -4,6 +4,7 @@ import {
   Image,
   ScrollView,
   TextInput,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -17,6 +18,7 @@ import useProducts from '../hooks/useProducts';
 import useCategories from '../hooks/useCategories';
 import RNPickerSelect from 'react-native-picker-select';
 import MText from '../components/MText';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 export default function ProductAddScreen(props: any) {
   const colorScheme = useColorScheme();
@@ -26,6 +28,7 @@ export default function ProductAddScreen(props: any) {
   const title = props.route.params.title;
   const product = props.route.params.product;
 
+  const [imageName, setImageName] = useState('');
   const [data, setData] = useState({
     barcode: 'string',
     name: '',
@@ -56,6 +59,17 @@ export default function ProductAddScreen(props: any) {
     navigation.goBack();
   };
 
+  const selectImage = () => {
+    launchImageLibrary({mediaType: 'photo', includeBase64: true}, response => {
+      if (response.assets) {
+        const image = response.assets[0];
+        const base64Image = image.base64; // Resim base64 formatında burada olacak
+        setData({...data, images: base64Image || ''});
+        setImageName(image.fileName || '');
+      }
+    });
+  };
+
   //Combobox işlemleri..
   const [selectedCategory, setSelectedCategory] = useState(null);
   const {categories} = useCategories();
@@ -75,7 +89,8 @@ export default function ProductAddScreen(props: any) {
   };
 
   useEffect(() => {
-    if (product) { //Fiyat ve Stok bilgileri number olduğu için input içerisine yerleştirme..
+    if (product) {
+      //Fiyat ve Stok bilgileri number olduğu için input içerisine yerleştirme..
       const jsondata = JSON.parse(product.toString());
       jsondata.price = jsondata.price.toString();
       jsondata.stock = jsondata.stock.toString();
@@ -109,7 +124,7 @@ export default function ProductAddScreen(props: any) {
               />
             </View>
             <View style={styles.double_item}>
-              <MText  type="label">Stok</MText>
+              <MText type="label">Stok</MText>
               <TextInput
                 style={styles.input}
                 placeholder="0"
@@ -141,7 +156,6 @@ export default function ProductAddScreen(props: any) {
               onChangeText={value => setData({...data, brand: value})}
             />
           </View>
-
           <View style={styles.group}>
             <MText type="label">Resim (URL)</MText>
             <TextInput
@@ -154,11 +168,17 @@ export default function ProductAddScreen(props: any) {
               keyboardType="url"
             />
           </View>
+          <View style={styles.group}>
+            <MText type="label" >Resim seçiniz</MText>
+            <TouchableOpacity onPress={selectImage} style={styles.imageInput}>
+              <MText>{imageName}</MText>
+            </TouchableOpacity>
+          </View>
 
           <View style={styles.group}>
             <MText type="label">Kategori</MText>
             <View style={styles.combobox}>
-            <RNPickerSelect
+              <RNPickerSelect
                 onValueChange={handleValueChange}
                 items={categoryItems}
                 placeholder={{label: 'Bir kategori seçin...', value: null}}
@@ -203,6 +223,18 @@ const getStyles = (colorScheme: 'light' | 'dark') => {
       borderRadius: 10,
       fontSize: moderateScale(14),
     },
+    imageInput: {
+      borderColor: Colors[colorScheme].inputBorder,
+      backgroundColor: Colors.common.inputBackground,
+      borderWidth: 1,
+      marginBottom: 20,
+      marginHorizontal: 5,
+      paddingHorizontal: 10,
+      borderRadius: 10,
+      fontSize: moderateScale(14),
+      height: 40,
+      justifyContent:'center',
+      },
     combobox: {
       borderColor: Colors[colorScheme].inputBorder,
       backgroundColor: Colors.common.inputBackground,

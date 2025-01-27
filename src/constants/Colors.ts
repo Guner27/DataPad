@@ -1,5 +1,5 @@
 const tintColorLight = '#245501'; // Dark Moss Green
-const tintColorDark = '#9CFC97';  // Pistachio
+const tintColorDark = '#FFFFFF';  // Pistachio
 
 export const Colors = {
   light: {
@@ -21,8 +21,8 @@ export const Colors = {
     text: '#F5FAEF',
     background: '#292929',
     tint: tintColorDark,
-    titleText: '#9CFC97', // Header Title
-    icon: '#9CFC97',
+    titleText: '#FFFFFF', // Header Title
+    icon: '#4A9614',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
     tabBarBackground: '#292929',

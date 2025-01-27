@@ -50,11 +50,11 @@ export default function ForgotPassword() {
           Hesabını bul
         </MText>
       </View>
+      <PageView lockToPortrait={true}>
       <StatusBar
-        barStyle="light-content"
+        barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
         backgroundColor={Colors[colorScheme || 'light'].headerbackground}
       />
-      <PageView lockToPortrait={true}>
         {pageChange ? (
           <View style={styles.container}>
             <Icon style={styles.icon} name="outgoing-mail" />
