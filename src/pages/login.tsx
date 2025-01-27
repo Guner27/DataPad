@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   StatusBar,
@@ -15,6 +15,9 @@ import {Colors} from '../constants/Colors';
 import MText from '../components/MText';
 import useLogin from '../hooks/useLogin';
 import LoginButton from '../components/LoginButton';
+import {useTranslation} from 'react-i18next';
+import {saveLanguageToStorage} from '../storage/storage';
+import RNPickerSelect from 'react-native-picker-select';
 
 export default function LoginScreen() {
   const navigation = useNavigation<any>();
@@ -22,6 +25,19 @@ export default function LoginScreen() {
   const styles = getStyle(colorScheme || 'light');
   const {email, password, setEmail, setPassword, loading, handleLogin} =
     useLogin();
+  const {t, i18n} = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language); // Başlangıçta seçili dil
+
+  // Dil değişim fonksiyonu
+  const changeLanguage = async (lng: any) => {
+    setSelectedLanguage(lng); // Seçili dili güncelle
+    await i18n.changeLanguage(lng);
+    await saveLanguageToStorage(lng); // Dil tercihini kaydediyoruz
+  };
+  const languageOptions = [
+    {label: 'English', value: 'en'},
+    {label: 'Türkçe', value: 'tr'},
+  ];
 
   // Eğer loading durumu varsa, loading gösterebiliriz
   loading ? <ActivityIndicator size="large" /> : null;
@@ -31,14 +47,21 @@ export default function LoginScreen() {
         barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
         backgroundColor={Colors[colorScheme || 'light'].background}
       />
-      <View />
+      <View style={styles.picker}>
+      <RNPickerSelect
+      style={{inputAndroid:styles.picker}  }
+        onValueChange={changeLanguage} // Dil değişimini sağlayacak fonksiyon
+        value={selectedLanguage} // Başlangıçta seçili olan dil
+        items={languageOptions} // Dil seçenekleri
+        placeholder={{}}
+      /></View>
       <View>
         <Icon style={styles.icon} name="login" size={100} />
         <View style={styles.inputContainer}>
           <Icon name="user" size={24} style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="E-posta"
+            placeholder={t('login.placeholder.email')}
             placeholderTextColor="gray"
             value={email}
             onChangeText={setEmail}
@@ -49,7 +72,7 @@ export default function LoginScreen() {
           <Icon name="key" size={24} style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="Şifre"
+            placeholder={t('login.placeholder.password')}
             placeholderTextColor="gray"
             value={password}
             onChangeText={setPassword}
@@ -59,17 +82,17 @@ export default function LoginScreen() {
         {loading ? (
           <ActivityIndicator size="large" />
         ) : (
-          <LoginButton title="Giriş Yap" onPress={handleLogin} />
+          <LoginButton title={t('login.button.signIn')} onPress={handleLogin} />
         )}
 
         <TouchableOpacity onPress={() => navigation.navigate('forgorPassword')}>
           <MText type="subtitle" style={styles.passwprdText}>
-            Şifreni mi unuttun?
+            {t('login.button.password')}
           </MText>
         </TouchableOpacity>
       </View>
       <LoginButton
-        title="Yeni Hesap Oluştur."
+        title={t('login.button.signUp')}
         outline={false}
         onPress={() => {
           navigation.navigate('register');
@@ -116,6 +139,11 @@ const getStyle = (colorScheme: 'light' | 'dark') => {
       padding: 24,
       textAlign: 'center',
       marginBottom: 80,
+    },
+    picker:{
+      width:120,
+      alignSelf:'center',
+      color:Colors[colorScheme || 'light'].text,
     },
   });
 };

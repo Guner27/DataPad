@@ -1,0 +1,49 @@
+{
+  "welcome": "Welcome!",
+  "settings": "Settings",
+
+  "login": {
+    "language": "Select language",
+    "button": {
+      "signIn": "Sign In",
+      "password": "Forgot your password?",
+      "signUp": "Create New Account"
+    },
+    "placeholder": {
+      "email": "Email",
+      "password": "Password"
+    }
+  },
+  "register": {
+    "button": {
+      "signIn": "Sign In",
+      "signUp": "Create Account"
+    },
+    "placeholder": {
+      "name": "Your Name",
+      "surname": "Your Surname",
+      "username": "Username",
+      "email": "Email",
+      "password": "Create Password"
+    }
+  },
+    "forgotPassword": {
+      "header": "Find Your Account",
+      "title": "Enter your email",
+      "label": {
+        "code": "Verification code sent to your email",
+        "password": "New Password",
+        "password2": "Confirm New Password"
+      },
+      "placeholder": {
+        "email": "Email",
+        "code": "Verification code"
+      },
+      "button": {
+        "continue": "Continue",
+        "ok": "OK"
+      }
+    }
+  }
+  
+

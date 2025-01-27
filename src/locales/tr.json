@@ -1,0 +1,47 @@
+{
+  "welcome": "Merhaba!",
+  "settings": "Ayarlar",
+
+  "login": {
+    "language": "Dilini seç",
+    "button": {
+      "signIn": "Giriş Yap",
+      "password": "Şifreni mi unuttun?",
+      "signUp": "Yeni Hesap Oluştur"
+    },
+    "placeholder": {
+      "email": "E-posta",
+      "password": "Parola"
+    }
+  },
+  "register": {
+    "button": {
+      "signIn": "Giriş Yap",
+      "signUp": "Hesap Oluştur"
+    },
+    "placeholder": {
+      "name": "Adınız",
+      "surname": "Soyadınız",
+      "username": "Kullanıcı Adı",
+      "email": "E-posta",
+      "password": "Şifre oluştur"
+    }
+  },
+  "forgotPassword": {
+    "header": "Hesabını bul",
+    "title": "E-Postanı gir",
+    "label": {
+      "code": "Maile gelen doğrulama kodu",
+      "password": "Yeni Parola",
+      "password2": "Yeni parola tekrar"
+    },
+    "placeholder": {
+      "email": "E-posta",
+      "code": "Doğrulama kodu"
+    },
+    "button": {
+      "continue": "Devam",
+      "ok": "Tamam"
+    }
+  }
+}

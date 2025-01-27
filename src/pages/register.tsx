@@ -16,10 +16,12 @@ import {useNavigation} from '@react-navigation/native';
 import useRegister from '../hooks/useRegister';
 import MText from '../components/MText';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useTranslation } from 'react-i18next';
 
 export default function RegisterScreen() {
   const colorScheme = useColorScheme();
   const styles = getStyle(colorScheme || 'light');
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const {user, setUser, loading, register} = useRegister();
 
@@ -66,7 +68,7 @@ export default function RegisterScreen() {
           <Icon name="user" size={24} style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="Adınız."
+            placeholder={t('register.placeholder.name')}
             placeholderTextColor="gray"
             value={user.name}
             onChangeText={value => setUser({...user, name: value})}
@@ -78,7 +80,7 @@ export default function RegisterScreen() {
           <Icon name="user" size={24} style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="Soyadınız"
+            placeholder={t('register.placeholder.surname')}
             placeholderTextColor="gray"
             value={user.surname}
             onChangeText={value => setUser({...user, surname: value})}
@@ -106,7 +108,7 @@ export default function RegisterScreen() {
           <Icon name="paperclip" size={24} style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="Kullanıcı Adı"
+            placeholder={t('register.placeholder.username')}
             placeholderTextColor="gray"
             value={user.username}
             onChangeText={value => setUser({...user, username: value})}
@@ -118,7 +120,7 @@ export default function RegisterScreen() {
           <Icon name="mail" size={24} style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="E-posta"
+            placeholder={t('register.placeholder.email')}
             placeholderTextColor="gray"
             value={user.email}
             onChangeText={value => setUser({...user, email: value})}
@@ -130,7 +132,7 @@ export default function RegisterScreen() {
           <Icon name="key" size={24} style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="Şifre oluştur"
+            placeholder={t('register.placeholder.password')}
             placeholderTextColor="gray"
             value={user.password}
             onChangeText={value => setUser({...user, password: value})}
@@ -140,11 +142,11 @@ export default function RegisterScreen() {
         {loading ? (
           <ActivityIndicator size="large" />
         ) : (
-          <LoginButton title="Hesap Oluştur" onPress={register} />
+          <LoginButton title={t('register.button.signUp')} onPress={register} />
         )}
       </View>
       <LoginButton
-        title="Giriş Yap"
+        title={t('register.button.signIn')}
         outline={false}
         onPress={() => {
           navigation.goBack();

@@ -16,10 +16,12 @@ import {Colors} from '../constants/Colors';
 import MText from '../components/MText';
 import {moderateScale} from 'react-native-size-matters';
 import LoginButton from '../components/LoginButton';
+import { useTranslation } from 'react-i18next';
 
 export default function ForgotPassword() {
   const colorScheme = useColorScheme();
   const styles = getStyles(colorScheme || 'light');
+  const { t } = useTranslation();
   const navigation = useNavigation();
 
   const {pageChange, resetPassword, requestPasswordReset} =
@@ -47,7 +49,7 @@ export default function ForgotPassword() {
         </TouchableOpacity>
         <MText type="title" style={styles.headerText}>
           {' '}
-          Hesabını bul
+          {t('forgotPassword.header')}
         </MText>
       </View>
       <PageView lockToPortrait={true}>
@@ -59,41 +61,41 @@ export default function ForgotPassword() {
           <View style={styles.container}>
             <Icon style={styles.icon} name="outgoing-mail" />
 
-            <MText style={styles.title}>E-postanı gir</MText>
+            <MText style={styles.title}>{t('forgotPassword.title')}</MText>
             <View style={styles.inputContainer}>
               <Icon name="alternate-email" size={24} style={styles.inputIcon} />
               <TextInput
                 style={styles.input}
-                placeholder="E-posta"
+                placeholder={t('forgotPassword.placeholder.email')}
                 placeholderTextColor="gray"
                 value={mailOrUsername}
                 onChangeText={setMailOrUserName}
               />
             </View>
-            <LoginButton title="Devam" onPress={request}/>
+            <LoginButton title={t('forgotPassword.button.continue')} onPress={request}/>
             <View style={styles.space}/>
           </View>
         ) : (
           <View style={styles.container}>
             <Icon style={styles.icon} name="published-with-changes" size={70} />
-            <MText type="label" style={styles.label}>Maile gelen doğrulama kodu</MText>
+            <MText type="label" style={styles.label}>{t('forgotPassword.label.code')}</MText>
             <View style={styles.inputContainer}>
               <Icon name="forward-to-inbox" size={24} style={styles.inputIcon} />
               <TextInput
                 style={styles.input}
-                placeholder="Doğrulama kodu"
+                placeholder={t('forgotPassword.placeholder.code')}
                 placeholderTextColor="gray"
                 value={token}
                 onChangeText={setToken}
               />
             </View>
 
-            <MText type="label" style={styles.label}>Yeni parola</MText>
+            <MText type="label" style={styles.label}>{t('forgotPassword.label.password')}</MText>
             <View style={styles.inputContainer}>
               <Icon name="key" size={24} style={styles.inputIcon} />
               <TextInput
                style={styles.input}
-               placeholder="Yeni parola"
+               placeholder={t('forgotPassword.label.password')}
                placeholderTextColor="gray"
                value={newPassword}
                onChangeText={setNewPassword}
@@ -101,12 +103,12 @@ export default function ForgotPassword() {
               />
             </View>
 
-            <MText type="label" style={styles.label}>Yeni parola tekrar</MText>
+            <MText type="label" style={styles.label}>{t('forgotPassword.label.password2')}</MText>
             <View style={styles.inputContainer}>
               <Icon name="key" size={24} style={styles.inputIcon} />
               <TextInput
                style={styles.input}
-               placeholder="Yeni parola tekrar"
+               placeholder={t('forgotPassword.label.password2')}
                placeholderTextColor="gray"
                value={confirmPassword}
                onChangeText={setConfirmPassword}

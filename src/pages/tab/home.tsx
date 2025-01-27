@@ -18,8 +18,10 @@ import {Colors} from '../../constants/Colors';
 import useUser from '../../hooks/useUser';
 import Collapsible from '../../components/Collapsible';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export default function HomeScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const {user, loading, deleteUser} = useUser();
   const dispatch = useDispatch();
@@ -57,7 +59,7 @@ export default function HomeScreen() {
   return (
     <>
       <TabHeader
-        title="Merhaba!"
+        title={t('welcome')}
         buttonName="export"
         buttonColor="#d62828"
         buttonOnPress={logout}>
